@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Photobooth</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Baloo+2:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="home">
+<div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
+<img class="brand" src="logo.png" alt="Sunway Robotics Club">
+<nav id="stepper" class="stepper" aria-label="Progress">
+  <span data-s="1"><b>1</b>Shoot</span><em></em>
+  <span data-s="2"><b>2</b>Template</span><em></em>
+  <span data-s="3"><b>3</b>Send</span>
+</nav>
+<canvas id="confetti"></canvas>
+<div class="tracks" aria-hidden="true">
+  <div class="lane lane-a"><div class="belt" data-src="templates/flower4.jpg"></div></div>
+  <div class="lane lane-b"><div class="belt" data-src="templates/film3.jpg"></div></div>
+</div>
+
+<!-- 1. Home -->
+<section id="home" class="screen active">
+  <div class="hero">
+    <img class="hero-logo" src="logo.png" alt="Sunway Robotics Club">
+    <h1 id="title">Photobooth</h1>
+    <p class="sub">Strike a pose, pick a template, and get your strip in your inbox.</p>
+    <button id="startBtn" class="big-btn">Take a photo</button>
+    <ul class="steps">
+      <li><b>1</b> Snap 5 photos</li>
+      <li><b>2</b> Pick a template</li>
+      <li><b>3</b> Email it to yourself</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3. Template page: pick a template on the left, live preview + photo order on the right -->
+<section id="templates" class="screen">
+  <header class="topbar">
+    <button class="btn ghost small" data-go="camera">← Retake photos</button>
+    <h2>Choose your template</h2>
+    <span></span>
+  </header>
+  <div class="tpl-layout">
+    <div class="tpl-main">
+      <nav id="tabs" class="tabs">
+        <button class="tab sel" data-cat="all">All</button>
+        <button class="tab" data-cat="4">4 photostrip</button>
+        <button class="tab" data-cat="3">3 photostrip</button>
+        <button class="tab" data-cat="a5">A5 paper</button>
+      </nav>
+      <div id="tplGrid" class="tpl-grid"></div>
+    </div>
+    <aside class="arr-side live">
+      <h3>Live preview <small id="tplName"></small> <button id="resizeBtn" class="fx-clear" type="button">⤢ Enlarge</button></h3>
+      <div id="stripWrap" class="strip-wrap"><canvas id="strip"></canvas></div>
+      <h3>Your photos</h3>
+      <p id="pickHint" class="hint"></p>
+      <div id="shotRow" class="shot-row"></div>
+      <p id="saved" class="saved"></p>
+      <div class="row">
+        <button class="btn ghost" data-go="camera">Retake all</button>
+        <button class="btn" id="nextBtn">Next: email it →</button>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- 2. Camera + effects page -->
+<section id="camera" class="screen">
+  <header class="topbar">
+    <button class="btn ghost small" data-go="home">← Back</button>
+    <h2>Pick your effects</h2>
+    <span id="shotInfo" class="shot-info"></span>
+  </header>
+  <div class="fx-layout">
+    <div class="cam-col">
+    <div class="preview-wrap">
+      <canvas id="live"></canvas>
+      <i class="vf tl"></i><i class="vf tr"></i><i class="vf bl"></i><i class="vf br"></i>
+      <div id="countdown"></div>
+      <div id="rec" class="rec"><b></b>LIVE</div>
+      <div id="flash"></div>
+      <div id="roll" class="roll" aria-label="Photos taken"></div>
+      <p id="status" class="status">Starting camera…</p>
+    </div>
+    <button id="shootBtn" class="btn big cam-start" disabled>Start</button>
+    </div>
+    <aside class="fx-side">
+      <h3>Colour filter</h3>
+      <div id="colorRow" class="options"></div>
+      <h3>Retro cam</h3>
+      <div id="retroRow" class="options"></div>
+      <h3>Emoji <small>(only hats, props &amp; hair stack)</small> <button id="fxClear" class="fx-clear" hidden>Clear <b id="fxCount">0</b></button></h3>
+      <input id="fxSearch" class="fx-search" type="search" placeholder="Search filters…" autocomplete="off">
+      <div id="fxTabs" class="fx-tabs"></div>
+      <div id="fxGrid" class="fx-grid"></div>
+    </aside>
+  </div>
+</section>
+
+<!-- 5. Email -->
+<section id="email" class="screen">
+  <div class="envelope" aria-hidden="true"><span></span></div>
+  <h2>Want a copy?</h2>
+  <p class="eyebrow">We'll email you the photo strip and your 5 photos.</p>
+  <form id="emailForm" class="email-form">
+    <input id="emailInput" type="email" placeholder="you@example.com" autocomplete="email" required>
+    <button class="btn big" id="sendBtn" type="submit">Send to my email</button>
+  </form>
+  <p id="emailMsg" class="saved"></p>
+  <div class="row">
+    <button class="btn ghost" data-go="templates">← Back</button>
+    <button class="btn ghost" id="doneBtn">Skip / Done</button>
+  </div>
+</section>
+
+<script type="module" src="app.js"></script>
+<script type="module" src="tracks.js"></script>
+</body>
+</html>

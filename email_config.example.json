@@ -1,0 +1,9 @@
+{
+  "host": "smtp.gmail.com",
+  "port": 465,
+  "user": "your.photobooth.account@gmail.com",
+  "password": "your-16-letter-app-password",
+  "from_name": "Sunway Robotics Club Photobooth",
+  "subject": "Your photobooth photos",
+  "body": "Thanks for stopping by the photobooth! Your strip and photos are attached."
+}
